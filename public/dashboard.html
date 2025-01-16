@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <div id="day-display"></div>
+      <div class="dashboard">
+        
+        <header class="dashboard-header">
+          <div class="header-content">
+            <h1>Portfolio Dashboard</h1>
+            <p class="subtitle">Track your finances with ease</p>
+          </div>
+          <button id="darkModeToggle" class="dark-mode-toggle">
+            <span class="sun-icon">☀️</span>
+            <span class="moon-icon">🌙</span>
+          </button>
+        </header>
+        
+        <div class="summary-cards">
+          <div class="card balance">
+            <div class="card-icon">💰</div>
+            <div class="card-content">
+                <h3>Total Balance</h3>
+                <div class="balance-row">
+                    <p id="totalBalance">₹0</p>
+                    <button id="toggleBalanceButton" class="icon-button">
+                        <span id="eyeIcon">👁️</span>
+                    </button>
+                </div>
+            </div>
+          </div>
+        
+          <div class="card income">
+            <div class="card-icon">↘️</div>
+            <div class="card-content">
+              <h3>Total Income</h3>
+              <p id="totalIncome">₹0</p>
+            </div>
+          </div>
+          <div class="card expenses">
+            <div class="card-icon">↗️</div>
+            <div class="card-content">
+              <h3>Total Expenses</h3>
+              <p id="totalExpenses">₹0</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="chart-container">
+            <h2>Expense Distribution</h2>
+            <button id="showSpendingGraph" class="chart-button">Show Spending Graph</button>
+            <canvas id="expenseChart"></canvas>
+          </div>
+          
+          <form id="transactionForm">
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" name="amount" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="type">Type</label>
+                <select id="type" name="type" required>
+                    <option value="received">Received</option>
+                    <option value="spent">Spent</option>
+                </select>
+            </div>
+        
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    <option value="food">Food</option>
+                    <option value="transport">Transport</option>
+                    <option value="utilities">Utilities</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="salary">Salary</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        
+            <div class="form-group">
+                <label for="paymentMode">Payment Mode</label>
+                <select id="paymentMode" name="paymentMode" required>
+                    <option value="cash">Cash</option>
+                    <option value="online">Online</option>
+                </select>
+            </div>
+        
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description" required>
+            </div>
+        
+            <button type="submit">Add Transaction</button>
+          </form>        
+        </div>
+        
+        <div class="transactions">
+          <h2>Transactions</h2>
+          <button id="showTransactionsBtn">Show Transactions</button>
+          <div id="transactionsList"></div>
+        </div>
+      </div>
+    </div>
+    <script src="finance.js"></script>
+  </body>
+</html>

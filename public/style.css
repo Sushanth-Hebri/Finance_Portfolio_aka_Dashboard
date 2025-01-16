@@ -1,0 +1,373 @@
+:root {
+  /* Light mode variables */
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --success-color: #22c55e;
+  --danger-color: #ef4444;
+  --background-color: #f3f4f6;
+  --card-background: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --input-background: #ffffff;
+}
+
+
+@font-face {
+  font-family: 'PoynterOldStyleRoman';
+  src: url('https://raw.githubusercontent.com/Sushanth-Hebri/Poynter-Old-Style-Roman-font-CDN/main/PoynterOSDisp-Roman.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+
+/* Dark mode variables */
+[data-theme="dark"] {
+  --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
+  --success-color: #22c55e;
+  --danger-color: #ef4444;
+  --background-color: #111827;
+  --card-background: #1f2937;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --border-color: #374151;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.25);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+  --input-background: #374151;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'PoynterOldStyleRoman', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#app {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+.dashboard {
+  backdrop-filter: blur(19px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background-color: var(--card-background); /* Ensure this variable is defined */
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  padding: 2rem;
+  transition: background-color 0.3s;
+}
+
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.header-content {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  width: auto;
+  color: var(--text-primary);
+  transition: color 0.3s;
+}
+
+.dark-mode-toggle:hover {
+  color: var(--primary-color);
+}
+
+[data-theme="dark"] .sun-icon {
+  display: none;
+}
+
+[data-theme="light"] .moon-icon {
+  display: none;
+}
+
+h1 {
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+h2 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.card {
+  background: var(--card-background);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-icon {
+  font-size: 2rem;
+  padding: 1rem;
+  background: var(--background-color);
+  border-radius: 12px;
+  transition: background-color 0.3s;
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card h3 {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.balance-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+#totalBalance {
+  visibility: hidden;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  width: auto;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 0;
+  color: var(--text-secondary);
+}
+
+.icon-button:hover {
+  color: var(--text-primary);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.chart-container {
+  background: var(--card-background);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transition: background-color 0.3s;
+}
+
+.chart-button {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: white;
+  background: var(--primary-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.chart-button:hover {
+  background: var(--primary-hover);
+  transform: scale(1.1);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: var(--input-background);
+  color: var(--text-primary);
+  transition: border-color 0.2s, background-color 0.3s, color 0.3s;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background: var(--primary-hover);
+}
+
+.transactions {
+  background: var(--card-background);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transition: background-color 0.3s;
+}
+
+.transaction-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr auto;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.transaction-item:hover {
+  background-color: var(--background-color);
+}
+
+.transaction-item:last-child {
+  border-bottom: none;
+}
+
+.amount {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.received {
+  color: var(--success-color);
+}
+
+.spent {
+  color: var(--danger-color);
+}
+
+.transaction-details {
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.transaction-details small {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.transaction-date {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  #app {
+    padding: 1rem;
+  }
+
+  .dashboard {
+    padding: 1.5rem;
+  }
+
+  .transaction-item {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .card p {
+    font-size: 1.5rem;
+  }
+}
+
+/* Style for the day display */
+#day-display {
+  position: fixed;            /* Fixed position on the screen */
+  top: 50%;                   /* Center vertically */
+  left: 0;                    /* Stick to the left side */
+  transform: translateY(-50%) rotate(180deg); /* Adjust for perfect vertical centering */
+  writing-mode: vertical-rl;  /* Rotate text vertically (top to bottom) */
+  text-align: center;         /* Align text horizontally inside the element */
+  color:var(--text-primary);                /* Text color */
+  font-family: Arial, sans-serif; /* Font style */
+  font-size: 5rem;            /* Font size */
+  padding: 30px;  
+  filter: blur(0.6);            /* Add some padding */
+  border-right: 2px solid #ccc; /* Optional border for visual separation */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
